@@ -47,10 +47,12 @@ const StaggeredList = <T extends unknown>(props: StaggeredListProps<T>) => {
       contentContainerStyle={contentContainerStyle}
       removeClippedSubviews={true}
       refreshControl={
-        <RefreshControl
-          refreshing={!!(refreshing || isRefreshing)}
-          onRefresh={onRefresh}
-        />
+        props.onRefresh
+          ? <RefreshControl
+            refreshing={!!(refreshing || isRefreshing)}
+            onRefresh={onRefresh}
+          />
+          : undefined
       }
       scrollEventThrottle={16}
       onScroll={({ nativeEvent }: { nativeEvent: NativeScrollEvent }) => {
